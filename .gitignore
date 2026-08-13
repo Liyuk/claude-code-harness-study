@@ -1,0 +1,12 @@
+# macOS Finder metadata
+.DS_Store
+
+# Node.js local state
+node_modules/
+coverage/
+
+# Local agent runtime state and secrets
+.agent-os/
+.env
+.env.*
+!.env.example

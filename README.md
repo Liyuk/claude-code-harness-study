@@ -30,7 +30,7 @@ Context builder -----> 可缓存的稳定前缀
 learning/                 学习与讨论：概念、对照、研究资料
 kernel/                   可实现、可测试的 AI OS 微内核
   contracts.md            先于代码的模块合同与不变量
-  src/                    内核实现（尚未选择语言）
+  src/                    TypeScript / Node 内核实现
   tests/                  合同与场景测试
 ```
 
@@ -44,6 +44,7 @@ kernel/                   可实现、可测试的 AI OS 微内核
 
 - [微内核边界与实现顺序](kernel/README.md)
 - [模块合同与安全不变量](kernel/contracts.md)
+- [贡献与当前路线图](CONTRIBUTING.md)
 
 ## 建议的推进顺序
 
