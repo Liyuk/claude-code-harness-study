@@ -33,6 +33,19 @@ model → ToolRequest → schema validation → policy gate
 
 模型永远拿不到 executor 或凭证的直接引用。
 
+## 第二阶段：文件系统工具合同
+
+`FileSystemExecutor` 是首个真实 I/O adapter。创建时只接收一个已存在的 `workspaceRoot`；它不接受任意绝对路径，也不暴露宿主机文件句柄。
+
+| 工具 | 输入 | 成功输出 | 副作用 |
+|---|---|---|---|
+| `read_file` | `{ path: string }` | 文件 UTF-8 内容 | 无 |
+| `write_file` | `{ path: string, content: string }` | 统一 diff | 仅写入 executor 的暂存区，不修改磁盘 |
+
+路径必须是相对 workspace 的普通路径，不能越过 root、包含 NUL，或穿过 symbolic link。`write_file` 需要 `write:workspace/<path>` capability；kernel 的审批策略仍在 adapter 之前生效。
+
+“暂存而不落盘”是刻意设计：下一阶段将另加一个独立、可审批的 `apply_staged_write` syscall。这样模型先产出 diff，人再决定是否真正写入工作区。
+
 ## 安全不变量
 
 1. **完全中介：** 每一次有副作用的工具调用都必须经过 `policy_gate`。

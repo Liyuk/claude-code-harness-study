@@ -26,12 +26,12 @@
 
 1. `process_manager`：创建、暂停、恢复、完成或失败一个单 agent 任务。
 2. `policy_gate`：在所有副作用前依据 capability 和审批状态作出 `ALLOW`、`ASK` 或 `DENY` 决定。
-3. `tool_broker`：验证工具请求，并只通过 sandboxed executor 执行。
+3. `tool_broker`：验证工具请求，并只通过 sandboxed executor 执行。**第二阶段已完成首个 adapter：** `FileSystemExecutor` 只能访问一个 workspace，`read_file` 真实读取，`write_file` 只生成暂存 diff。
 4. `event_store`：先记录意图和决策，再记录执行结果；支持 checkpoint。
 5. `context_manager`：选择当前轮最小必要上下文；旧历史以摘要或检索保存。
 6. 以场景测试覆盖预算耗尽、拒绝越权、执行中断与从 checkpoint 恢复。
 
-先保持单 agent、单工作区、四个工具（读、写、搜索、运行测试）。多 agent 只能在这些合同和测试稳定后加入。
+先保持单 agent、单工作区、四个工具（读、写、搜索、运行测试）。目前只有读与暂存写可用；多 agent 只能在这些合同和测试稳定后加入。
 
 ## 目录约定
 
