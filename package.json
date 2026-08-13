@@ -1,0 +1,9 @@
+{
+  "name": "ai-agent-os-study",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-strip-types --test kernel/tests/*.test.ts",
+    "demo": "node --experimental-strip-types kernel/src/demo.ts"
+  }
+}
