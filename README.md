@@ -28,6 +28,7 @@ Context builder -----> 可缓存的稳定前缀
 
 - [架构基线](docs/architecture-baseline.md)：最小 loop 与生产化边界
 - [讨论议程](docs/discussion-agenda.md)：供我们逐项讨论和做决定
+- [生态与证据地图（2026-08）](docs/landscape-2026-08.md)：按 MECE 口径整理复现、开源替代品、论文、评测与安全资料
 
 ## 建议的推进顺序
 
