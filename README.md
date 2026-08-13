@@ -1,6 +1,6 @@
-# Claude Code Harness Study
+# AI Agent OS Study
 
-一个用于讨论和复现实用 coding-agent harness 设计的研究项目。研究对象是公开文档与可独立验证的行为模式；不收集、传播或依赖泄露源码、内部提示词或未发布功能。
+一个同时包含学习讨论与微内核实现的项目。研究对象是公开文档与可独立验证的行为模式；不收集、传播或依赖泄露源码、内部提示词或未发布功能。
 
 ## 当前问题
 
@@ -24,15 +24,31 @@ Context builder -----> 可缓存的稳定前缀
         +--> Checkpoint / compacted memory
 ```
 
-## 文档
+## 项目结构
 
-- [架构基线](docs/architecture-baseline.md)：最小 loop 与生产化边界
-- [讨论议程](docs/discussion-agenda.md)：供我们逐项讨论和做决定
-- [生态与证据地图（2026-08）](docs/landscape-2026-08.md)：按 MECE 口径整理复现、开源替代品、论文、评测与安全资料
+```text
+learning/                 学习与讨论：概念、对照、研究资料
+kernel/                   可实现、可测试的 AI OS 微内核
+  contracts.md            先于代码的模块合同与不变量
+  src/                    内核实现（尚未选择语言）
+  tests/                  合同与场景测试
+```
+
+### 学习与讨论
+
+- [架构基线](learning/architecture-baseline.md)：最小 loop 与生产化边界
+- [讨论议程](learning/discussion-agenda.md)：供我们逐项讨论和做决定
+- [生态与证据地图（2026-08）](learning/landscape-2026-08.md)：按 MECE 口径整理复现、开源替代品、论文、评测与安全资料
+
+### Kernel 实现
+
+- [微内核边界与实现顺序](kernel/README.md)
+- [模块合同与安全不变量](kernel/contracts.md)
 
 ## 建议的推进顺序
 
-1. 定义最小单 agent loop 的状态和接口。
-2. 把 tool router、policy gate、executor 分离，先做可审计的权限边界。
-3. 增加 checkpoint、预算与 context compaction。
-4. 最后才评估 planner / worker / verifier 或子代理机制是否真的必要。
+1. 在 `learning/` 理解 loop、权限、上下文与 OS 类比。
+2. 在 `kernel/contracts.md` 锁定最小单 agent 的状态、系统调用与安全不变量。
+3. 在 `kernel/src/` 实现 process manager、policy gate、tool broker 和 event store。
+4. 在 `kernel/tests/` 用可重放任务证明权限、恢复和预算真的生效。
+5. 最后才评估 planner / worker / verifier 或子代理机制是否真的必要。
