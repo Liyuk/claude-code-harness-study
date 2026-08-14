@@ -39,6 +39,7 @@ kernel/                   可实现、可测试的 AI OS 微内核
 - [架构基线](learning/architecture-baseline.md)：最小 loop 与生产化边界
 - [讨论议程](learning/discussion-agenda.md)：供我们逐项讨论和做决定
 - [生态与证据地图（2026-08）](learning/landscape-2026-08.md)：按 MECE 口径整理复现、开源替代品、论文、评测与安全资料
+- [四种 Harness 架构对比](learning/harness-comparison-pi-codex-claude-deepseek.md)：Pi、Codex、Claude Code 与 DeepSeek Harness 的边界、取舍与可吸收设计
 
 ### Kernel 实现
 
